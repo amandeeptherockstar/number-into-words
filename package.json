@@ -1,6 +1,6 @@
 {
   "name": "number-into-words",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A npm package to convert number into words",
   "main": "index.js",
   "scripts": {
