@@ -28,6 +28,7 @@ $ npm install number-into-words
 | Repo | README |
 | ------ | ------ |
 | Github | https://github.com/amandeeptherockstar/number-into-words |
+| NPM Package | https://www.npmjs.com/package/number-into-words |
 | Test Online | https://numberintowords.netlify.com/ |
 
 
