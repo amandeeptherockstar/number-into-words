@@ -1,0 +1,23 @@
+{
+  "name": "number-into-words",
+  "version": "1.0.0",
+  "description": "A npm package to convert number into words",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/amandeeptherockstar/number-into-words"
+  },
+  "keywords": [
+    "number-to-words",
+    "number-into-words",
+    "number-to-text",
+    "convert-numbers",
+    "currencyinwords",
+    "currency-to-words"
+  ],
+  "author": "Amandeep Kochhar",
+  "license": "MIT"
+}
