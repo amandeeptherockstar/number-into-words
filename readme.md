@@ -59,7 +59,7 @@ console.log(words);
 /* internationalConversion */
 const words = converter.internationalConversion(100000001);
 console.log(words);
-// output - ONE HUNDRED MILLION AND ONE.SEVENTY-SIX LAC, SIXTY-FOUR THOUSAND, ONE HUNDRED AND NINETY.
+// output - ONE HUNDRED MILLION AND ONE.
 ```
 # Testing Online Before Installing
 Visit the following URL to see the practical use of this package: 
