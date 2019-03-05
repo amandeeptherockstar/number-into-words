@@ -1,11 +1,12 @@
 # Number Into Words
 
 
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
+[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger) [![Build Status](https://img.shields.io/coveralls/blakeembrey/change-case.svg?style=flat)](https://travis-ci.org/joemccann/dillinger)
+
 
 number-into-words is a light-weight, quick number to words generator for NodeJS or other Front End Frameworks that uses JavaScript. It has ZERO dependency.
 
-  - Generate Words from Numbers
+  - Generate Words from Numbers (Capital/lowercase/UPPERCASE Supported)
   - Two Major Numbering System Supported (Indian & International Number System)
   - Auto Punctuation inbuilt.
   - ZERO Dependencies.
@@ -40,26 +41,30 @@ const converter = require('number-into-words');
 #### Methods
 Module gives us two methods to use:
 ```sh
-#1. indianConversion(number);
+#1. indianConversion(number, {characterCase: value});
 ```
-** number: int = Number which needs to be converted into Words Using Indian Numbering System, for more info On Indian Numbering System visit https://en.wikipedia.org/wiki/Indian_numbering_system
+** number: int = Number which needs to be converted into Words Using Indian Numbering System.
+** value: string = value can be the return case of words, Possible values are: capital, uppercase and lowercase.
+For more info On Indian Numbering System visit https://en.wikipedia.org/wiki/Indian_numbering_system
 
 ```sh
-#2. internationalConversion(number);
+#2. internationalConversion(number, {characterCase: value});
 ```
-** number: int = Number which needs to be converted into Words Using International Numbering System, for more info On International Numbering System visit https://www.math-only-math.com/international-numbering-system.html
+** number: int = Number which needs to be converted into Words Using International Numbering System.
+** value: string = value can be the return case of words, Possible values are: capital, uppercase and lowercase.
+For more info On International Numbering System visit https://www.math-only-math.com/international-numbering-system.html
 
 ### Examples
 ```javascript
 /* indianConversion */
-const words = converter.indianConversion(7664190);
+const words = converter.indianConversion(7664190, {characterCase: 'UPPERCASE'});
 console.log(words);
 // output - SEVENTY-SIX LAC, SIXTY-FOUR THOUSAND, ONE HUNDRED AND NINETY.
 
 /* internationalConversion */
-const words = converter.internationalConversion(100000001);
+const words = converter.internationalConversion(100000001, {characterCase: 'lowercase'});
 console.log(words);
-// output - ONE HUNDRED MILLION AND ONE.
+// output - one hundred million and three.
 ```
 # Testing Online Before Installing
 Visit the following URL to see the practical use of this package: 

@@ -57,7 +57,7 @@ function generateWords(number) {
     word = generateWords(Math.floor(number / ONE_CRORE)) + ' CRORE,';
 
   } else if (number < ONE_KHARAB) {
-    console.log(Math.floor(number / ONE_ARAB));
+    // console.log(Math.floor(number / ONE_ARAB));
     remainder = number % ONE_ARAB;
     word = generateWords(Math.floor(number / ONE_ARAB)) + ' ARAB,';
 
