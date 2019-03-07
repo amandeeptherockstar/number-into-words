@@ -1,4 +1,5 @@
 const indian = require('./helpers/indian');
+const bulgarian = require('./helpers/bulgarian');
 const international = require('./helpers/international');
 
 // characterCase can be of 3 types capital (default), lowercase or uppercase
@@ -91,7 +92,12 @@ function internationalConversion(number, { characterCase = 'capital' } = {}) {
   return transformedWords.join(' ') + '.';
 }
 
+function bulgarianConversion(number, { characterCase = 'capital' } = {}) {
+  return bulgarian.generateWords(number);
+}
+
 module.exports = {
   indianConversion,
-  internationalConversion
+  internationalConversion,
+  bulgarianConversion
 }
