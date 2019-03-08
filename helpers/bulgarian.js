@@ -7,7 +7,8 @@ const ONE_TRILLION = 1000000000000;       //     1,000,000,000,000 (12) // би�
 const ONE_QUADRILLION = 1000000000000000; // 1,000,000,000,000,000 (15) // билиард
 const MAX = 9007199254740992;             // 9,007,199,254,740,992 (15)
 
-const unitDigits = ["Нула", "Едно", "Две", "Три", "Четири", "Пет", "Шест", "Седем", "Осем", "Девет", "Десет", "Единадесет", "Дванадесет", "Тринадесет", "Четиринадесет", "Петнадесет", "Шестнадесет", "Седемнадесет", "Осемнадесет", "Деветнадесет"]
+const unitDigits = ["Нула", "Едно", "Две", "Три", "Четири", "Пет", "Шест", "Седем", "Осем", "Девет", "Десет"];
+const teensDigits = ["Нула", "Единадесет", "Дванадесет", "Тринадесет", "Четиринадесет", "Петнадесет", "Шестнадесет", "Седемнадесет", "Осемнадесет", "Деветнадесет"];
 const tensDigits = ["Нула", "Десет", "Двадесет", "Тридесет", "Четиридесет", "Петдесет", "Шестдесет", "Седемдесет", "Осемдесет", "Деветдесет"];
 const hundredsDigits = ["Нула", "Сто", "Двеста", "Триста", "Четиристотин", "Петстотин", "Шестстотин", "Седемстотин", "Осемстотин", "Деветстотин"];
 
@@ -18,18 +19,38 @@ function trippleWords(trippleNumber) {
 
   // format the input length to 3
   trippleNumber = ('00'+trippleNumber).slice(trippleNumber.length-1);
-    
-  let thirdDigit  = parseInt(trippleNumber[2]);
-  let thirdWord = thirdDigit !== 0 ? unitDigits[thirdDigit] : '';
-  let thirdDivider = '';
+  
+  let firstDigit  = parseInt(trippleNumber[0]);
+  let firstWord = firstDigit !== 0 ? hundredsDigits[firstDigit] : '';
+  
+  let secondDigit = '';
+  let secondWord = '';
 
-  let secondDigit = parseInt(trippleNumber[1]);;
-  let secondWord = secondDigit !== 0 ? tensDigits[secondDigit] : '';
-  let secondDivider = '';
+  let thirdDigit = '';
+  let thirdWord = '';
 
-  let firstDigit  = parseInt(trippleNumber[0]);;
-  let firstWord = firstDigit !== 0 ? hundredsDigits[firstDigit] : '';  
+  secondDigit = parseInt(trippleNumber[1]);
+  thirdDigit  = parseInt(trippleNumber[2]);
+  if (secondDigit!=1){
+    secondWord = secondDigit !== 0 ? tensDigits[secondDigit] : '';
+    thirdWord = thirdDigit !== 0 ? unitDigits[thirdDigit] : '';
+  } else if (secondDigit===1 & thirdDigit!==0) {
+    secondDigit = 10 + thirdDigit;
+    thirdDigit = 0;
+
+    secondWord = teensDigits[secondDigit-10];
+    thirdWord = '';
+  } else {
+    secondDigit = 10;
+    // thirdDigit = 0;
+
+    secondWord = 'Десет';
+    thirdWord = '';
+  }
+  
   let firstDivider = '';
+  let secondDivider = '';
+  let thirdDivider = '';
 
   // dividers format
   if (firstDigit!==0){
