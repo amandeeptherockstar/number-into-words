@@ -7,21 +7,27 @@ const ONE_TRILLION = 1000000000000;       //     1,000,000,000,000 (12) // би�
 const ONE_QUADRILLION = 1000000000000000; // 1,000,000,000,000,000 (15) // билиард
 const MAX = 9007199254740992;             // 9,007,199,254,740,992 (15)
 
-const unitDigits = ["НУЛА", "ЕДНО", "ДВЕ", "ТРИ", "ЧЕТИРИ", "ПЕТ", "ШЕСТ", "СЕДЕМ", "ОСЕМ", "ДЕВЕТ", "ДЕСЕТ", "ЕДИНАДЕСЕТ", "ДВАНАДЕСЕТ", "ТРИНАДЕСЕТ", "ЧЕТИРИНАДЕСЕТ", "ПЕТНАДЕСЕТ", "ШЕСТНАДЕСЕТ", "СЕДЕМНАДЕСЕТ", "ОСЕМНАДЕСЕТ", "ДЕВЕТНАДЕСЕТ"]
-const tensDigits = ["НУЛА", "ДЕСЕТ", "ДВАДЕСЕТ", "ТРИДЕСЕТ", "ЧЕТИРИДЕСЕТ", "ПЕТДЕСЕТ", "ШЕСТДЕСЕТ", "СЕДЕМДЕСЕТ", "ОСЕМДЕСЕТ", "ДЕВЕТДЕСЕТ"];
-const hundredsDigits = ["НУЛА", "СТО", "ДВЕСТА", "ТРИСТА", "ЧЕТИРИСТОТИН", "ПЕТСТОТИН", "ШЕСТСТОТИН", "СЕДЕМСТОТИН", "ОСЕМСТОТИН", "ДЕВЕТСТОТИН"];
+const unitDigits = ["Нула", "Едно", "Две", "Три", "Четири", "Пет", "Шест", "Седем", "Осем", "Девет", "Десет", "Единадесет", "Дванадесет", "Тринадесет", "Четиринадесет", "Петнадесет", "Шестнадесет", "Седемнадесет", "Осемнадесет", "Деветнадесет"]
+const tensDigits = ["Нула", "Десет", "Двадесет", "Тридесет", "Четиридесет", "Петдесет", "Шестдесет", "Седемдесет", "Осемдесет", "Деветдесет"];
+const hundredsDigits = ["Нула", "Сто", "Двеста", "Триста", "Четиристотин", "Петстотин", "Шестстотин", "Седемстотин", "Осемстотин", "Деветстотин"];
+
+const thousand  = ['', 'Хиляда', 'Един Милион', 'Един Милиард', 'Един Билион', 'Един Билиард'];
+const thousands = ['', 'Хиляди', 'Милиона', 'Милиарда', 'Билиона', 'Билиарда'];
 
 function trippleWords(trippleNumber) {
-  
-  let thirdDigit  = trippleNumber%10;
+
+  // format the input length to 3
+  trippleNumber = ('00'+trippleNumber).slice(trippleNumber.length-1);
+    
+  let thirdDigit  = parseInt(trippleNumber[2]);
   let thirdWord = thirdDigit !== 0 ? unitDigits[thirdDigit] : '';
   let thirdDivider = '';
 
-  let secondDigit = (trippleNumber-thirdDigit)%100/10;
+  let secondDigit = parseInt(trippleNumber[1]);;
   let secondWord = secondDigit !== 0 ? tensDigits[secondDigit] : '';
   let secondDivider = '';
 
-  let firstDigit  = (trippleNumber-secondDigit*10-thirdDigit)/100;
+  let firstDigit  = parseInt(trippleNumber[0]);;
   let firstWord = firstDigit !== 0 ? hundredsDigits[firstDigit] : '';  
   let firstDivider = '';
 
@@ -31,21 +37,21 @@ function trippleWords(trippleNumber) {
       if(thirdDigit!==0){
         firstDivider = '';
         secondDivider = ' ';
-        thirdDivider = ' И ';
+        thirdDivider = ' и '; // 'сто двадесет и пет'
       } else { // thirdDigit === 0
         firstDivider = '';
-        secondDivider = ' И ';
-        thirdDivider = '';
+        secondDivider = ' и ';
+        thirdDivider = ''; // 'сто и двадесет'
       }
     } else { // secondDigit === 0
       if(thirdDigit!==0){
         firstDivider = '';
         secondDivider = '';
-        thirdDivider = ' И ';
+        thirdDivider = ' и '; // 'сто и пет'
       } else { // thirdDigit === 0
-        firstDivider = 'И ';
+        firstDivider = 'и ';
         secondDivider = '';
-        thirdDivider = '';
+        thirdDivider = ''; // 'и сто'
       }
     }
   } else { // firstDigit === 0
@@ -53,21 +59,21 @@ function trippleWords(trippleNumber) {
       if(thirdDigit!==0){
         firstDivider = '';
         secondDivider = '';
-        thirdDivider = ' И ';
+        thirdDivider = ' и '; // 'двадесет и пет'
       } else { // thirdDigit === 0
         firstDivider = '';
-        secondDivider = 'И ';
-        thirdDivider = '';
+        secondDivider = 'и ';
+        thirdDivider = ''; // 'и двадесет'
       }
     } else { // secondDigit === 0
       if(thirdDigit!==0){
         firstDivider = '';
         secondDivider = '';
-        thirdDivider = 'И ';
+        thirdDivider = 'и '; // 'и пет'
       } else { // thirdDigit === 0
         firstDivider = '';
         secondDivider = '';
-        thirdDivider = '';
+        thirdDivider = ''; // ''
       }
     }
   }
@@ -75,33 +81,60 @@ function trippleWords(trippleNumber) {
   return firstDivider+firstWord+secondDivider+secondWord+thirdDivider+thirdWord;
 }
 
-
 function generateWords(number) {
   let words = '';
   
   if (number===0) {
-    return 'НУЛА';
+    return 'Нула';
   }
-
-  // If negative, prepend “minus”
-  if (number < 0) {
-    words = 'МИНУС ';
-    number = Math.abs(number);
-  }
-
-  // slice number to tripples and process each
   
+  // If negative, note the “minus”
+  let isNegative = number<0 ? true : false;
 
-  words += trippleWords(number);
+  // get the abs value
+  number = Math.abs(number);
+  
+  // If there are fractions, round down the number
+  number = Math.floor(number);
 
-  // trim starter 'И ' if any
-  if (words.startsWith('И ')) {
-    words = words.slice(2);
-  } else if (words.startsWith('МИНУС И ')){
-    words = 'МИНУС ' + words.slice(8);
+  number = number.toString();
+  
+  let counter = 0; // tripples counter
+  let nmbr = '';
+  // slice number to tripples and process each
+  while (number.length>0) {
+    if (number.length>2){
+      nmbr = number.slice(number.length-3);
+      number = number.slice(0,number.length-3);
+    } else {
+      nmbr = number;
+      number = '';
+    }
+
+    let tripple = trippleWords(nmbr);
+
+    if (counter===0){
+      words = tripple;
+    } else {
+      tripple = (tripple.startsWith('и Едно') ? '' : tripple ) + ( nmbr == 1 ? ' '+thousand[counter] : nmbr == 0 ? '' : ' '+thousands[counter] );
+      tripple = tripple.startsWith('и ') ? tripple.slice(2) : tripple;
+      words = tripple + (words.startsWith(' ') ? ',' : ', ') + words ;
+    }
+
+    counter++;
   }
 
-  return words;
+  // reformat the head
+  if (words.startsWith('и ')){
+    words = words.slice(2);
+  }
+
+  // sign compensation
+  if (isNegative) {
+    return 'минус ' + words;
+  } else {
+    return words;
+  };
 }
 
 module.exports = {
