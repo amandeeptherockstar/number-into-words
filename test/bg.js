@@ -85,7 +85,7 @@ bg['testing positive numbers from 1,000,000 to 999,999,999 , lowercase'] = funct
   assert.equal(check.bulgarianConversion(3005300,'lowercase'),'три милиона, пет хиляди, и триста');
   assert.equal(check.bulgarianConversion(2018024,'lowercase'),'два милиона, осемнадесет хиляди, двадесет и четири');
   assert.equal(check.bulgarianConversion(13950060,'lowercase'),'тринадесет милиона, деветстотин и петдесет хиляди, и шестдесет');
-  assert.equal(check.bulgarianConversion(7250060,'lowercase'),'седемдесет и два милиона, деветстотин и петдесет хиляди, и шестдесет');
+  assert.equal(check.bulgarianConversion(72950060,'lowercase'),'седемдесет и два милиона, деветстотин и петдесет хиляди, и шестдесет');
   assert.equal(check.bulgarianConversion(803107002,'lowercase'),'осемстотин и три милиона, сто и седем хиляди, и две');
   assert.equal(check.bulgarianConversion(316120999,'lowercase'),'триста и шестнадесет милиона, сто и двадесет хиляди, деветстотин деветдесет и девет');
   assert.equal(check.bulgarianConversion(900000000,'lowercase'),'деветстотин милиона');
