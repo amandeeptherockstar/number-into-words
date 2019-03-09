@@ -125,6 +125,19 @@ bg['testing positive numbers from 1,000,000,000,000 to 999,999,999,999,999 , low
   done();
 };
 
+bg['testing positive numbers from 1,000,000,000,000,000 to 9,007,199,254,740,992 , lowercase'] = function(done){
+  assert.equal(check.bulgarianConversion(1000000000000000,'lowercase'),'един билиард');
+  assert.equal(check.bulgarianConversion(1001000000000001,'lowercase'),'един билиард, един билион, и едно');
+  assert.equal(check.bulgarianConversion(1001001001002001,'lowercase'),'един билиард, един билион, един милиард, един милион, две хиляди, и едно');
+  assert.equal(check.bulgarianConversion(9005002001024014,'lowercase'),'девет билиарда, пет билиона, два милиарда, един милион, двадесет и четири хиляди, и четиринадесет');
+  assert.equal(check.bulgarianConversion(8018012003005300,'lowercase'),'осем билиарда, осемнадесет билиона, дванадесет милиарда, три милиона, пет хиляди, и триста');
+  assert.equal(check.bulgarianConversion(6078065002018024,'lowercase'),'шест билиарда, седемдесет и осем билиона, шестдесет и пет милиарда, два милиона, осемнадесет хиляди, двадесет и четири');
+  assert.equal(check.bulgarianConversion(3836905113950060,'lowercase'),'три билиарда, осемстотин тридесет и шест билиона, деветстотин и пет милиарда, сто и тринадесет милиона, деветстотин и петдесет хиляди, и шестдесет');
+  assert.equal(check.bulgarianConversion(2200100072950060,'lowercase'),'два билиарда, двеста билиона, сто милиарда, седемдесет и два милиона, деветстотин и петдесет хиляди, и шестдесет');
+  assert.equal(check.bulgarianConversion(1905102803107002,'lowercase'),'един билиард, деветстотин и пет билиона, сто и два милиарда, осемстотин и три милиона, сто и седем хиляди, и две');
+  assert.equal(check.bulgarianConversion(7002000316120999,'lowercase'),'седем билиарда, два билиона, триста и шестнадесет милиона, сто и двадесет хиляди, деветстотин деветдесет и девет');
+  done();
+};
 
 // Export the tests to the runner
 module.exports = bg;

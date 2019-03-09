@@ -9,7 +9,6 @@ _app.tests = {};
 // Dependencies
 _app.cli = require('./cli');
 _app.tests.bg = require('./bg');
-_app.tests.temp = require('./temp');
 
 // Count all the tests
 _app.countTests = function(){
