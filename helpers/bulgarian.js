@@ -132,18 +132,23 @@ function generateWords(number) {
       number = '';
     }
 
-    let tripple = trippleWords(nmbr);                                         console.log(tripple);
+    let tripple = trippleWords(nmbr); //console.log(tripple);
 
     if (counter===0){
       words = tripple;
     } else {
-      tripple = (tripple.startsWith('и Едно') ? '' : tripple ) + ( nmbr == 1 ? thousand[counter] : nmbr == 0 ? '' : ' ' + thousands[counter] );
+      tripple = (tripple.startsWith('и Едно') ? '' : (nmbr==2 && counter>1 ? 'два' : tripple) ) + ( nmbr == 1 ? thousand[counter] : nmbr == 0 ? '' : ' ' + thousands[counter] );
+      tripple = tripple.startsWith('и ') ? tripple.slice(2) : tripple;
       
       if(words!==''){
         if (words.startsWith(' ')){
           words = tripple + ',' + words;
         } else {
-          words = tripple + ', ' + words;
+          if(words.startsWith(',')){
+            words = tripple + words;
+          } else {
+            words = tripple + ', ' + words;
+          }
         }
       } else {
         words = tripple + words;

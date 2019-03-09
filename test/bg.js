@@ -77,5 +77,21 @@ bg['testing positive numbers from 1,000 to 999,999 , lowercase'] = function(done
   done();
 };
 
+bg['testing positive numbers from 1,000,000 to 999,999,999 , lowercase'] = function(done){
+  assert.equal(check.bulgarianConversion(1000000,'lowercase'),'един милион');
+  assert.equal(check.bulgarianConversion(1000001,'lowercase'),'един милион, и едно');
+  assert.equal(check.bulgarianConversion(1002001,'lowercase'),'един милион, две хиляди, и едно');
+  assert.equal(check.bulgarianConversion(1024014,'lowercase'),'един милион, двадесет и четири хиляди, и четиринадесет');
+  assert.equal(check.bulgarianConversion(3005300,'lowercase'),'три милиона, пет хиляди, и триста');
+  assert.equal(check.bulgarianConversion(2018024,'lowercase'),'два милиона, осемнадесет хиляди, двадесет и четири');
+  assert.equal(check.bulgarianConversion(13950060,'lowercase'),'тринадесет милиона, деветстотин и петдесет хиляди, и шестдесет');
+  assert.equal(check.bulgarianConversion(7250060,'lowercase'),'седемдесет и два милиона, деветстотин и петдесет хиляди, и шестдесет');
+  assert.equal(check.bulgarianConversion(803107002,'lowercase'),'осемстотин и три милиона, сто и седем хиляди, и две');
+  assert.equal(check.bulgarianConversion(316120999,'lowercase'),'триста и шестнадесет милиона, сто и двадесет хиляди, деветстотин деветдесет и девет');
+  assert.equal(check.bulgarianConversion(900000000,'lowercase'),'деветстотин милиона');
+  assert.equal(check.bulgarianConversion(100999030,'lowercase'),'сто милиона, деветстотин деветдесет и девет хиляди, и тридесет');
+  done();
+};
+
 // Export the tests to the runner
 module.exports = bg;
