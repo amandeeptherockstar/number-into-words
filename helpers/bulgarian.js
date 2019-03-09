@@ -139,6 +139,7 @@ function generateWords(number) {
     } else {
       if(counter>1){
         tripple = tripple.replace('и Две','и Два');
+        tripple = tripple.replace('Дваста','Двеста');
       }
       tripple = (tripple.startsWith('и Едно') ? '' : tripple ) + ( nmbr == 1 ? thousand[counter] : nmbr == 0 ? '' : ' ' + thousands[counter] );
       tripple = tripple.startsWith('и ') ? tripple.slice(2) : tripple;
