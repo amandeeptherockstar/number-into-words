@@ -7,7 +7,9 @@ _app = {};
 _app.tests = {};
 
 // Dependencies
+_app.cli = require('./cli');
 _app.tests.bg = require('./bg');
+// _app.tests.temp = require('./temp');
 
 // Count all the tests
 _app.countTests = function(){
@@ -97,5 +99,10 @@ _app.produceTestReport = function(limit,successes,errors){
   
 };
 
-// Run the tests
+// Run the automated tests
 _app.runTests();
+
+// Run the manual testing in cli
+_app.cli.init();
+
+

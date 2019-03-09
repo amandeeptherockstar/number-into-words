@@ -139,7 +139,7 @@ function generateWords(number) {
     } else {
       tripple = (tripple.startsWith('и Едно') ? '' : tripple ) + ( nmbr == 1 ? ' '+thousand[counter] : nmbr == 0 ? '' : ' '+thousands[counter] );
       tripple = tripple.startsWith('и ') ? tripple.slice(2) : tripple;
-      words = tripple + (words.startsWith(' ') ? ',' : ', ') + words ;
+      words = tripple + (words.startsWith(' ')&&words.length!==0 ? ',' : ', ') + words ;
     }
 
     counter++;
