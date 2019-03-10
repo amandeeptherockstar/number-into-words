@@ -53,17 +53,35 @@ e.on('set lower',function(str){
 });
 
 e.on('check',function(str){
+  if(str[0]!=='-'){ // positive
+    if(str.length>16){
+      console.log('app accepts only valid integers ...');
+      return;
+    } else if(str.length===16 && str[0]==='9' && !isNaN(parseInt(str.slice(1))) && parseInt(str.slice(1))>7199254740992){
+      console.log('app accepts only valid integers ...');
+      return;
+    }
+  } else { // negative
+    if(str.length>17){
+      console.log('app accepts only valid integers ...');
+      return;
+    } else if(str.length===17 && str[1]==='9' && !isNaN(parseInt(str.slice(2))) && parseInt(str.slice(2))>7199254740991){
+      console.log('app accepts only valid integers ...');
+      return;
+    }
+  }
+
   if(isNaN(parseInt(str))){
     console.log('app accepts only valid integers ...');
     return;
   }
-
+  
   if (cli.countryCase==='in'){
     console.log(`Indian conversion / ${cli.characterCase} / number ${str} -> ${app.indianConversion(str,{'characterCase':cli.characterCase})}`);
   } else if (cli.countryCase==='int'){
     console.log(`International conversion / ${cli.characterCase} / number ${str} -> ${app.internationalConversion(str,{'characterCase':cli.characterCase})}`);
   } else {
-    console.log(`Bulgarian conversion / ${cli.characterCase} / number ${str} -> ${app.bulgarianConversion(str,cli.characterCase)}`);
+    console.log(`Bulgarian conversion / ${cli.characterCase} / number ${str} -> ${app.bulgarianConversion(str,{'characterCase':cli.characterCase})}`);
   }
 });
 

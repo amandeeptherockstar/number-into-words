@@ -92,7 +92,7 @@ function internationalConversion(number, { characterCase = 'capital' } = {}) {
   return transformedWords.join(' ') + '.';
 }
 
-function bulgarianConversion(number, characterCase = 'capital') {
+function bulgarianConversion(number, { characterCase = 'capital' } = {}) {
   let wordsFrom = bulgarian.generateWords(number);
   let transformer = '';
 
