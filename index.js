@@ -1,4 +1,5 @@
 const indian = require('./helpers/indian');
+const bulgarian = require('./helpers/bulgarian');
 const international = require('./helpers/international');
 
 // characterCase can be of 3 types capital (default), lowercase or uppercase
@@ -91,7 +92,38 @@ function internationalConversion(number, { characterCase = 'capital' } = {}) {
   return transformedWords.join(' ') + '.';
 }
 
+function bulgarianConversion(number, { characterCase = 'capital' } = {}) {
+  let wordsFrom = bulgarian.generateWords(number);
+  let transformer = '';
+
+  if (characterCase==='capital'){
+    transformer = function(el){
+      return el;
+    };
+  } else if (characterCase==='uppercase'){
+    transformer = function(el){
+      return el.toUpperCase();
+    };
+  } else if (characterCase==='lowercase'){
+    transformer = function(el){
+      return el.toLowerCase();
+    };
+  } else {
+    transformer = function(el){
+      return '*';
+    };
+  }
+
+  let wordsTo = '';
+  for(i=0; i<wordsFrom.length; i++){
+    wordsTo += transformer(wordsFrom[i]);
+  }
+
+  return wordsTo;
+}
+
 module.exports = {
   indianConversion,
-  internationalConversion
+  internationalConversion,
+  bulgarianConversion
 }
